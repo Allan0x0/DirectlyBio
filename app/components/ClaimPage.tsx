@@ -13,9 +13,9 @@ export function ClaimPage(props: Props) {
   const { className, url, inputName, ...rest } = props;
 
   return (
-    <div className={twMerge("flex flex-row items-center border rounded-full p-2 border-black shadow-normal bg-white", className)} {...rest}>
-      <div className="flex flex-col justify-center items-center px-4">
-        <Logo size={20} />
+    <div className={twMerge("flex flex-row items-center border rounded-full p-2 border-black shadow-xl bg-white", className)} {...rest}>
+      <div className="flex flex-col justify-center items-center px-2">
+        <Logo size={20} isBare />
       </div>
       <div className="flex flex-col items-start">
         <span className="text-black text-sm">{url}&nbsp;/</span>

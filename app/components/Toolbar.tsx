@@ -13,9 +13,10 @@ export function Toolbar(props: Props) {
   const { className, isLoggedIn, ...rest } = props;
 
   return (
-    <div className={twMerge("border-b border-stone-600 grid grid-cols-2 gap-6 py-8", className)} {...rest}>
-      <div className="flex flex-col items-start justify-center px-16">
+    <div className={twMerge("grid grid-cols-2 gap-6 py-8", className)} {...rest}>
+      <div className="flex flex-row items-center justify-start px-16 gap-12">
         <LogoLinkWithText />
+        <CustomNavItem to={AppLinks.Plans}>Pricing</CustomNavItem>
       </div>
       <div className="flex flex-row justify-end items-center px-16 gap-8">
         {!isLoggedIn ? <>

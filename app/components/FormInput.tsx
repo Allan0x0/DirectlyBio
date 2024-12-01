@@ -155,13 +155,7 @@ function Scaffold(
   const { name, children, className, label, labelProps, errors, ...rest } =
     props;
   return (
-    <div
-      className={twMerge(
-        'flex flex-col items-stretch justify-center gap-1',
-        className,
-      )}
-      {...rest}
-    >
+    <div className={twMerge('flex flex-col items-stretch justify-center gap-1', className)} {...rest}>
       {label ? <FormLabel {...labelProps}>{label}</FormLabel> : null}
       {children}
       {errors?.length ? <InputError name={name} errors={errors} /> : null}

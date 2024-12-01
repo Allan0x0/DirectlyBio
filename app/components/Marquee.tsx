@@ -36,14 +36,14 @@ export function IndexMarquee() {
   return (
     <Marquee>
       <MarqueeItem Icon={<IconTool className="text-stone-800" size={34} />} text="Simple & Customizable" />
-      <MarqueeItem Icon={<IconClockHour4Filled className="text-stone-800" size={34} />} text="Go live in no time" />
-      <MarqueeItem Icon={<IconLayout2Filled className="text-stone-800" size={34} />} text="Comprehensive block builder" />
+      <MarqueeItem Icon={<IconClockHour4Filled className="text-stone-800" size={34} />} text="Start selling in minutes" />
+      <MarqueeItem Icon={<IconLayout2Filled className="text-stone-800" size={34} />} text="Comprehensive store builder" />
       <MarqueeItem Icon={<IconTool className="text-stone-800" size={34} />} text="Simple & Customizable" />
-      <MarqueeItem Icon={<IconClockHour4Filled className="text-stone-800" size={34} />} text="Go live in no time" />
-      <MarqueeItem Icon={<IconLayout2Filled className="text-stone-800" size={34} />} text="Comprehensive block builder" />
+      <MarqueeItem Icon={<IconClockHour4Filled className="text-stone-800" size={34} />} text="Start selling in minutes" />
+      <MarqueeItem Icon={<IconLayout2Filled className="text-stone-800" size={34} />} text="Comprehensive store builder" />
       <MarqueeItem Icon={<IconTool className="text-stone-800" size={34} />} text="Simple & Customizable" />
-      <MarqueeItem Icon={<IconClockHour4Filled className="text-stone-800" size={34} />} text="Go live in no time" />
-      <MarqueeItem Icon={<IconLayout2Filled className="text-stone-800" size={34} />} text="Comprehensive block builder" />
+      <MarqueeItem Icon={<IconClockHour4Filled className="text-stone-800" size={34} />} text="Start selling in minutes" />
+      <MarqueeItem Icon={<IconLayout2Filled className="text-stone-800" size={34} />} text="Comprehensive store builder" />
     </Marquee>
   )
 }
