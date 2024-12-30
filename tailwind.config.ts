@@ -1,24 +1,36 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
+
+import colors from 'tailwindcss/colors';
 
 export default {
-  content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
+  content: ['./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       boxShadow: {
-        'normal': '3px 3px 0px #1d1d28',
-        'large': '6px 6px 0px #1d1d28',
+        normal: '3px 3px 0px #1d1d28',
+        large: '6px 6px 0px #1d1d28',
+        'text-black': '2px 2px 4px rgba(0, 0, 0, 0.6)', // black shadow
+        'text-white': '2px 2px 4px rgba(255, 255, 255, 0.6)', // white shadow
+        'text-combo':
+          '2px 2px 4px rgba(0, 0, 0, 0.6), 2px 2px 4px rgba(255, 255, 255, 0.6)', // combo shadow
       },
       fontFamily: {
+        times: ['"Times New Roman"', 'serif'], // Custom class 'font-times'
         sans: [
-          "Inter",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-          "Apple Color Emoji",
-          "Segoe UI Emoji",
-          "Segoe UI Symbol",
-          "Noto Color Emoji",
+          'Inter',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol',
+          'Noto Color Emoji',
         ],
+      },
+      colors: {
+        copy: colors.white,
+        primary: colors.purple,
+        secondary: colors.black,
       },
       keyframes: {
         appearFromRight: {
@@ -32,7 +44,8 @@ export default {
       },
       animation: {
         appearFromRight: 'appearFromRight 0.2s ease-out forwards',
-        marquee: 'scroll 115s linear infinite',
+        marquee: 'scroll 75s linear infinite',
+        marqueeMobile: 'scroll 75s linear infinite',
       },
     },
   },

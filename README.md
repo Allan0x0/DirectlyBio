@@ -1,13 +1,15 @@
-# Welcome to Remix!
+# DirectlyBio
 
-- 📖 [Remix docs](https://remix.run/docs)
+- Minimal link-in-bio platform
+- This is an exploratory project to learn about composing complex customisable interfaces from a few fundamentals.
+- Made using RemixJS, Vite, Tailwind, Prisma and MySQL
 
 ## Development
 
 Run the dev server:
 
 ```shellscript
-npm run dev
+yarn dev
 ```
 
 ## Deployment
@@ -15,13 +17,13 @@ npm run dev
 First, build your app for production:
 
 ```sh
-npm run build
+yarn build
 ```
 
 Then run the app in production mode:
 
 ```sh
-npm start
+yarn start
 ```
 
 Now you'll need to pick a host to deploy it to.
@@ -30,7 +32,7 @@ Now you'll need to pick a host to deploy it to.
 
 If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
 
-Make sure to deploy the output of `npm run build`
+Make sure to deploy the output of `yarn build`
 
 - `build/server`
 - `build/client`

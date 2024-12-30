@@ -1,0 +1,34 @@
+BLOCKS
+
+avatar
+
+enum block kind {
+  profile_pic (with text?), 
+  share btn, 
+  search bar
+  profile_bio
+  soc_icon_row
+  link (layout [centered_txt, card_header, card])
+  row
+  col
+  carousel
+  yt_video
+  thumbnail_link
+  spacing
+  heading
+}
+
+type row {
+  children: block[]
+}
+
+row = block[]
+template {
+  mode: dark/light
+  primary_text_color
+  // bg (color, image, style?)
+  primary bg
+  secondary bg?
+  bg_style (folded_bg)
+  rows -> row[]
+}
