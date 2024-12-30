@@ -1,15 +1,5 @@
-const MyPage = '/my-page';
-
 export const AppLinks = {
   Home: '/',
-
-  MyPage: {
-    Index: MyPage,
-    Style: `${MyPage}/style`,
-    Stats: `${MyPage}/stats`,
-    Settings: `${MyPage}/settings`,
-    Upgrade: `${MyPage}/upgrade`,
-  },
 
   PreviewPage: (pageName: string) => `/${pageName}`,
 
@@ -18,14 +8,18 @@ export const AppLinks = {
   SetProfilePicture: '/set-profile-picture',
   SaveSocialMediaLinks: '/save-social-media-links',
 
-  Signup: '/join',
+  Join: '/join',
   Login: '/login',
   Logout: '/logout',
+
+  Onboarding: {
+    ChoooseTemplate: '/choose-template',
+  },
 
   CaptureEmail: '/capture-email',
 
   Plans: '/plans',
-  PrivacyPolicy: 'privacy-policy',
+  PrivacyPolicy: '/privacy-policy',
   Terms: '/tos',
   Allan: 'https://allansimoyi.com',
 } as const;

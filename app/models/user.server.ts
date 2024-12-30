@@ -1,29 +1,18 @@
+import type { Password, User } from '@prisma/client';
 
-import type { Password, User } from "@prisma/client";
-import bcrypt from "bcryptjs";
-import { getClientIPAddress } from 'remix-utils/get-client-ip-address';
+import bcrypt from 'bcryptjs';
 
-import { prisma } from "~/db.server";
+import { prisma } from '~/db.server';
 
-import { getErrorMessage } from "./errors";
+import { getErrorMessage } from './errors';
 
-export type { User } from "@prisma/client";
+export type { User } from '@prisma/client';
 
-export function getUserIpAddress(request: Request) {
-  // using the request
-  const ipAddress = getClientIPAddress(request) || '';
-  if (ipAddress) {
-    return ipAddress;
-  }
-  // or using the headers
-  return getClientIPAddress(request.headers) || '';
-}
-
-export async function getUserById(id: User["id"]) {
+export async function getUserById(id: User['id']) {
   return prisma.user.findUnique({ where: { id } });
 }
 
-export async function getUserByEmail(email: User["email"]) {
+export async function getUserByEmail(email: User['email']) {
   return prisma.user.findUnique({ where: { email } });
 }
 
@@ -49,7 +38,7 @@ export async function createUserRecord(
 export async function createUser(
   email: User['email'],
   password: string,
-  ipAddress: string,
+  pageName?: string,
 ) {
   try {
     const numDuplicates = await prisma.user.count({
@@ -59,24 +48,19 @@ export async function createUser(
       return new Error('Email already used');
     }
 
-    const tempRecord = await prisma.tempPageName.findFirst({
-      where: { ipAddress },
-    });
-    const pageName = tempRecord?.pageName.trim().toLowerCase();
-
     return createUserRecord(email, pageName, password);
   } catch (error) {
     return new Error(getErrorMessage(error));
   }
 }
 
-export async function deleteUserByEmail(email: User["email"]) {
+export async function deleteUserByEmail(email: User['email']) {
   return prisma.user.delete({ where: { email } });
 }
 
 export async function verifyLogin(
-  email: User["email"],
-  password: Password["hash"],
+  email: User['email'],
+  password: Password['hash'],
 ) {
   const userWithPassword = await prisma.user.findUnique({
     where: { email },

@@ -1,4 +1,4 @@
-import bcrypt, { hash } from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 
 interface Props {
   inputPassword: string;
@@ -10,5 +10,5 @@ export function isValidPassword(props: Props) {
 }
 
 export function createHashedPassword(password: string) {
-  return hash(password, 10);
+  return bcrypt.hash(password, 10);
 }

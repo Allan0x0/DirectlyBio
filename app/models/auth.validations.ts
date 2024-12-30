@@ -11,6 +11,6 @@ export const GoogleCallbackSchema = z.object({
 // accessToken, refreshToken, extraParams, profile
 
 export enum SocialsProvider {
-  GOOGLE = "Google",
-  FACEBOOK = "Facebook"
+  GOOGLE = 'Google',
+  FACEBOOK = 'Facebook',
 }

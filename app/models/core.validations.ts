@@ -1,8 +1,6 @@
+import type { FormFields } from './forms';
 
-import { data } from '@remix-run/node';
 import { z } from 'zod';
-
-import type { ActionData, FormFieldKey, FormFields } from './forms';
 
 export enum ResponseMessage {
   Unauthorised = "You're not authorised to access this resource",
@@ -32,12 +30,6 @@ export const DateSchema = z.coerce.date();
 export type inferSafeParseErrors<T extends z.ZodTypeAny> = {
   [P in keyof z.infer<T>]?: string[];
 };
-
-export function badRequest<F extends FormFieldKey = string>(
-  suppliedData: ActionData<F>,
-) {
-  return data(suppliedData, { status: StatusCode.BadRequest });
-}
 
 export const INVALID_VALUES_FROM_SERVER =
   'Received invalid values from server, please contact out support team';
@@ -85,25 +77,9 @@ export function getValidatedId(rawId: unknown) {
   return result.data;
 }
 
-export function processBadRequest(
-  zodError: z.ZodError<unknown>,
+export function extractStringFields(
   fields: Record<string, FormDataEntryValue>,
-  dontLog?: 'dontLog',
 ) {
-  const { formErrors, fieldErrors } = zodError.flatten();
-  if (!dontLog) {
-    console.log('fields', fields);
-    console.log('fieldErrors', fieldErrors);
-    console.log('formErrors', formErrors);
-  }
-  return badRequest({
-    fields: extractStringFields(fields),
-    fieldErrors,
-    formError: formErrors.join(', '),
-  });
-}
-
-function extractStringFields(fields: Record<string, FormDataEntryValue>) {
   const result: FormFields = {};
   for (const field in fields) {
     const value = fields[field];
