@@ -1,7 +1,7 @@
+import type { ComponentProps } from 'react';
 
 import { fill } from '@cloudinary/url-gen/actions/resize';
 import { IconUser } from '@tabler/icons-react';
-import type { ComponentProps } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { useCloudinary } from './CloudinaryContextProvider';
@@ -45,22 +45,26 @@ export function ProfilePicture(props: Props) {
       )}
       {...rest}
     >
-      {imageUrl ? <img
+      {imageUrl ? (
+        <img
           src={imageUrl}
           alt={fullName}
           className={twMerge(
             'h-12 w-12 rounded-full object-cover',
             large && 'w-48 h-48',
           )}
-        /> : null}
-      {!imageUrl ? <div
+        />
+      ) : null}
+      {!imageUrl ? (
+        <div
           className={twMerge(
             'bg-purple-600 rounded-full h-12 w-12 flex flex-col justify-center items-center',
             large && 'w-48 h-48',
           )}
         >
           <IconUser className="text-xl font-semibold text-black" />
-        </div> : null}
+        </div>
+      ) : null}
     </div>
   );
 }

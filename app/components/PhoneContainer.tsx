@@ -1,7 +1,8 @@
 import type { ComponentProps } from 'react';
+
 import { twMerge } from 'tailwind-merge';
 
-type Props = ComponentProps<'div'>
+type Props = ComponentProps<'div'>;
 export function PhoneContainer(props: Props) {
   const { className, children, ...rest } = props;
   return (

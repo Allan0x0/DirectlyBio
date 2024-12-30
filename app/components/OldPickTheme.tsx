@@ -1,4 +1,4 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 import {
   IconBrandFacebook,
@@ -12,8 +12,10 @@ import {
 } from '@tabler/icons-react';
 import { twMerge } from 'tailwind-merge';
 
+import Cap from '~/../public/images/cap.webp';
 import Person from '~/../public/images/person.png';
 import Sweater from '~/../public/images/sweater.webp';
+import Tshirt from '~/../public/images/tshirt.webp';
 
 import { BottomFade } from './BottomFade';
 import { FadablePhone } from './FadablePhone';
@@ -52,9 +54,9 @@ export function PickThemeDisplayCard(props: Props) {
           </div>
         </div>
       </div>
-      <FadablePhone className="w-1/2 bg-gradient-to-b from-stone-400 via-stone-200 to-white">
+      <FadablePhone className="w-1/2 bg-white">
         <PhoneToolbar />
-        <div className="flex flex-col justify-center items-center gap-2 ">
+        <div className="flex flex-col justify-center items-center gap-2">
           <div className="rounded-full w-1/2 aspect-square bg-black/10 overflow-hidden">
             <img src={Person} alt="Creator" className="w-full object-contain" />
           </div>
@@ -69,11 +71,27 @@ export function PickThemeDisplayCard(props: Props) {
             <IconBrandYoutube className="text-stone-400" size={16} />
             <IconBrandFacebook className="text-stone-400" size={16} />
           </div>
-        </div>
-        <div className="flex flex-col items-stretch gap-4 py-6 px-4">
-          <ListItem item="View My Courses" />
-          <ListItem item="Join My Newsletter" />
-          <ListItem item="Subscribe To My Substack" />
+          <div className="grid grid-cols-2 gap-4 p-4">
+            <GridItem
+              Graphic={
+                <img src={Cap} alt="Cap" className="object-contain bg-center" />
+              }
+              item="Cap"
+              price={5}
+            />
+            <GridItem
+              Graphic={
+                <img
+                  src={Tshirt}
+                  alt="T-shirt"
+                  className="object-contain bg-center"
+                />
+              }
+              item="T-shirt"
+              price={12}
+            />
+            {/* <GridItem Graphic={<img src={Sweater} alt="Sweater" className="object-contain bg-center" />} item="Sweater" price={25} /> */}
+          </div>
         </div>
       </FadablePhone>
       <div className="flex flex-col justify-center items-center">
@@ -94,20 +112,29 @@ export function PickThemeDisplayCard(props: Props) {
   );
 }
 
-interface ListItemProps extends Omit<ComponentProps<'div'>, 'children'> {
+interface GridItemProps extends Omit<ComponentProps<'div'>, 'children'> {
+  Graphic: ReactNode;
   item: string;
+  price: number;
 }
-function ListItem(props: ListItemProps) {
-  const { className, item, ...rest } = props;
+function GridItem(props: GridItemProps) {
+  const { className, Graphic, item, price, ...rest } = props;
   return (
     <div
-      className={twMerge(
-        'flex flex-col items-center justify-center rounded-full bg-white px-4 py-3 border border-stone-100 shadow-xl',
-        className,
-      )}
+      className={twMerge('flex flex-col items-stretch', className)}
       {...rest}
     >
-      <span className="text-xs text-stone-800">{item}</span>
+      <div className="flex flex-col items-stretch gap-2">
+        <div className="w-full aspect-square rounded-xl bg-black/10 backdrop-blur-sm overflow-hidden">
+          {Graphic}
+        </div>
+        <div className="flex flex-col items-start gap-1">
+          <span className="text-xs text-stone-800">{item}</span>
+          <span className="text-xs text-stone-600 font-light">
+            $ {price.toFixed(2)}
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

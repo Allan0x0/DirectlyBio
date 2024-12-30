@@ -1,12 +1,12 @@
-import { Link } from '@remix-run/react';
 import type { ComponentProps } from 'react';
 
+import { Link } from '@remix-run/react';
 
 import { AppLinks } from '~/models/links';
 
 import { UnderLineOnHover } from './UnderLineOnHover';
 
-type Props = Omit<ComponentProps<typeof Link>, 'to'>
+type Props = Omit<ComponentProps<typeof Link>, 'to'>;
 export function HomeLink(props: Props) {
   const { children, className, ...rest } = props;
   return (

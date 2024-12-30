@@ -1,4 +1,5 @@
 import type { Cloudinary } from '@cloudinary/url-gen';
+
 import { useContext, createContext, useState } from 'react';
 
 interface ContextProps {

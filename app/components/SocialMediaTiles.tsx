@@ -1,14 +1,25 @@
-import { IconBrandFacebook, IconBrandInstagram, IconBrandTiktok, IconBrandWhatsapp, IconBrandX, IconBrandYoutube } from '@tabler/icons-react';
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
+
+import {
+  IconBrandFacebook,
+  IconBrandInstagram,
+  IconBrandTiktok,
+  IconBrandWhatsapp,
+  IconBrandX,
+  IconBrandYoutube,
+} from '@tabler/icons-react';
 import { twMerge } from 'tailwind-merge';
+
 import { SocMediaBadge } from './SocMediaBadge';
 
-interface Props extends Omit<ComponentProps<'div'>, 'children'> {
-}
+interface Props extends Omit<ComponentProps<'div'>, 'children'> {}
 export function SocialMediaTiles(props: Props) {
-  const { className, ...rest } = props
+  const { className, ...rest } = props;
   return (
-    <div className={twMerge("flex flex-row items-center gap-2 pb-6", className)} {...rest}>
+    <div
+      className={twMerge('flex flex-row items-center gap-2 pb-6', className)}
+      {...rest}
+    >
       <SocMediaBadge className="-mr-6">
         <IconBrandInstagram className="text-purple-600" />
       </SocMediaBadge>
@@ -28,5 +39,5 @@ export function SocialMediaTiles(props: Props) {
         <IconBrandFacebook className="text-sky-600" />
       </SocMediaBadge>
     </div>
-  )
+  );
 }

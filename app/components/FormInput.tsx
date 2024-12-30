@@ -1,4 +1,5 @@
 import type { ComponentProps, ForwardRefRenderFunction } from 'react';
+
 import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -14,8 +15,8 @@ function getClassName(props: GetClassNameProps) {
   const { disabled, className, transparent, errors } = props;
 
   return twMerge(
-    'border-none outline-none bg-white/[.05] transition-all duration-150',
-    'rounded-md p-2 font-normal text-black text-sm',
+    'border-none outline-none bg-copy/[.05] transition-all duration-150',
+    'rounded-lg py-3 px-4 font-normal text-copy text-sm',
     transparent && 'bg-transparent focus:ring-0',
     disabled && 'cursor-not-allowed bg-white/10',
     errors?.length && 'border-2 border-red-600',
@@ -46,6 +47,12 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, Props> = (
   const isSubmitting = useIsSubmitting();
   const disabled = isSubmitting || initDisabled;
 
+  const defaultValue = suppliedValue
+    ? undefined
+    : typeof value === 'string'
+      ? value
+      : undefined;
+
   return (
     <Scaffold
       name={name}
@@ -60,13 +67,7 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, Props> = (
         type={type || 'text'}
         name={name}
         disabled={disabled}
-        defaultValue={
-          suppliedValue
-            ? undefined
-            : typeof value === 'string'
-              ? value
-              : undefined
-        }
+        defaultValue={defaultValue}
         value={suppliedValue}
         aria-invalid={!!errors?.length}
         aria-describedby={`${name}-error`}
@@ -105,6 +106,12 @@ const TextArea: ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> = (
   const isSubmitting = useIsSubmitting();
   const disabled = isSubmitting || initDisabled;
 
+  const defaultValue = suppliedValue
+    ? undefined
+    : typeof value === 'string'
+      ? value
+      : undefined;
+
   return (
     <Scaffold
       name={name}
@@ -119,13 +126,7 @@ const TextArea: ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps> = (
         ref={ref}
         name={name}
         disabled={isSubmitting}
-        defaultValue={
-          suppliedValue
-            ? undefined
-            : typeof value === 'string'
-              ? value
-              : undefined
-        }
+        defaultValue={defaultValue}
         value={suppliedValue}
         aria-invalid={!!errors?.length}
         aria-describedby={`${name}-error`}
@@ -155,7 +156,13 @@ function Scaffold(
   const { name, children, className, label, labelProps, errors, ...rest } =
     props;
   return (
-    <div className={twMerge('flex flex-col items-stretch justify-center gap-1', className)} {...rest}>
+    <div
+      className={twMerge(
+        'flex flex-col items-stretch justify-center gap-1',
+        className,
+      )}
+      {...rest}
+    >
       {label ? <FormLabel {...labelProps}>{label}</FormLabel> : null}
       {children}
       {errors?.length ? <InputError name={name} errors={errors} /> : null}
@@ -179,7 +186,7 @@ export function FormLabel(props: ComponentProps<'span'>) {
   const { children, className, ...rest } = props;
   return (
     <span
-      className={twMerge('text-sm font-light text-black/40', className)}
+      className={twMerge('text-sm font-light text-copy/60', className)}
       {...rest}
     >
       {children}

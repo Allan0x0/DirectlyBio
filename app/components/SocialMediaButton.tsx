@@ -1,6 +1,7 @@
+import type { ReactNode } from 'react';
+
 import { Form } from '@remix-run/react';
 import { IconBrand4chan } from '@tabler/icons-react';
-import type { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import GoogleLogo from '~/../public/images/google.svg';

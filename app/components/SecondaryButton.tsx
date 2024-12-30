@@ -1,6 +1,7 @@
-import { Link } from '@remix-run/react';
 import type { RemixLinkProps } from '@remix-run/react/dist/components';
 import type { ComponentProps } from 'react';
+
+import { Link } from '@remix-run/react';
 import { twMerge } from 'tailwind-merge';
 
 interface GetClassNameProps {
@@ -10,8 +11,8 @@ interface GetClassNameProps {
 function getClassName(props: GetClassNameProps) {
   const { className: inputClassName, disabled } = props;
   const className = twMerge(
-    'rounded-md transition-all duration-150 text-center p-2 text-black',
-    'bg-white hover:bg-white/80 focus:bg-white/80',
+    'rounded-lg transition-all duration-150 text-center py-2 px-6 text-primary-600',
+    'bg-copy focus:bg-copy/90 rounded-full font-normal',
     disabled &&
       'text-stone-400/40 cursor-not-allowed bg-white/50 hover:bg-white/50',
     inputClassName || '',

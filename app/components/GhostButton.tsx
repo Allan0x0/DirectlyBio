@@ -1,6 +1,7 @@
-import { Link } from '@remix-run/react';
 import type { RemixLinkProps } from '@remix-run/react/dist/components';
 import type { ComponentProps } from 'react';
+
+import { Link } from '@remix-run/react';
 import { twMerge } from 'tailwind-merge';
 
 interface getGhostButtonClassNameProps {

@@ -1,35 +1,72 @@
+import type { ComponentProps } from 'react';
+
 import { Link } from '@remix-run/react';
-// import { IconLocation } from '@tabler/icons-react';
-import { ComponentProps } from 'react';
+import { IconLocation } from '@tabler/icons-react';
 import { twMerge } from 'tailwind-merge';
+
 import { AppLinks } from '~/models/links';
-import LogoImage from '~/../public/images/logo.svg';
-import BareLogoImage from '~/../public/images/bare_logo.svg';
 
 interface Props {
   className?: string;
-  size?: number;
   isBare?: boolean;
+  darkMode?: boolean;
+  size?: number;
 }
 export function Logo(props: Props) {
-  const { className, size, isBare } = props;
-  console.log(className, size);
+  const { className, darkMode, size, isBare } = props;
   if (isBare) {
-    return (<img src={BareLogoImage} alt="Logo" className={twMerge("w-10 h-10", className)} />)
+    return (
+      <IconLocation
+        className={twMerge(
+          'text-purple-600',
+          darkMode && 'text-white',
+          className,
+        )}
+        size={size || 22}
+      />
+    );
   }
-  return (<img src={LogoImage} alt="Logo" className={twMerge("w-10 h-10", className)} />)
-  // return <IconLocation className={twMerge("text-purple-600", className)} size={size || 30} />;
+  return (
+    <div
+      className={twMerge(
+        'rounded-full bg-purple-600 p-2',
+        darkMode && 'bg-white',
+      )}
+    >
+      <IconLocation
+        className={twMerge(
+          'text-white',
+          darkMode && 'text-purple-600',
+          className,
+        )}
+        size={size || 22}
+      />
+    </div>
+  );
 }
 
-interface WithTextProps extends Omit<ComponentProps<typeof Link>, 'children' | 'to'> {
-  darkBg?: boolean;
+interface WithTextProps
+  extends Omit<ComponentProps<typeof Link>, 'children' | 'to'> {
+  darkMode?: boolean;
+  isBare?: boolean;
 }
 export function LogoLinkWithText(props: WithTextProps) {
-  const { darkBg, className, ...rest } = props;
+  const { darkMode, isBare, className, ...rest } = props;
   return (
-    <Link to={AppLinks.Home} className={twMerge("flex flex-row items-center gap-4", className)} {...rest}>
-      <Logo />
-      <span className={twMerge("text-black font-semibold text-xl", darkBg && 'text-white')}>Directly Bio</span>
+    <Link
+      to={AppLinks.Home}
+      className={twMerge('flex flex-row items-center gap-2', className)}
+      {...rest}
+    >
+      <Logo isBare={isBare || false} darkMode={darkMode} />
+      <span
+        className={twMerge(
+          'text-black font-semibold text-xl text-nowrap',
+          darkMode && 'text-white',
+        )}
+      >
+        Directly Bio
+      </span>
     </Link>
-  )
+  );
 }

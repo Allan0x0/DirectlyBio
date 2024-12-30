@@ -1,8 +1,9 @@
+import type { FieldErrors, FormFields } from '../models/forms';
 import type { Fetcher } from '@remix-run/react';
-import { createContext, useCallback, useContext, useMemo } from 'react';
 import type { ZodTypeAny, z } from 'zod';
 
-import type { FieldErrors, FormFields } from '../models/forms';
+import { createContext, useCallback, useContext, useMemo } from 'react';
+
 import { hasFieldErrors, hasFields, hasFormError } from '../models/forms';
 
 interface ContextProps {
@@ -61,13 +62,10 @@ export function useIsSubmitting() {
 
 export function useForm<T extends ZodTypeAny>(
   fetcher: { data?: Fetcher['data']; state: Fetcher['state'] } | undefined,
-  Schema: T,  
+  Schema: T,
 ) {
-  // type SchemaKeys = Extract<keyof z.infer<typeof Schema>, string>;
-  // type SchemaKeys = keyof z.TypeOf<T> extends string ? keyof z.TypeOf<T> : never;
-
   type FilterStringKeys<T> = {
-    [K in keyof T]: K extends string ? K : never
+    [K in keyof T]: K extends string ? K : never;
   }[keyof T];
   type SchemaKeys = FilterStringKeys<z.infer<typeof Schema>>;
 
@@ -98,6 +96,22 @@ export function useForm<T extends ZodTypeAny>(
     fieldErrors,
     formError,
     fields,
+    isProcessing: fetcher?.state !== 'idle',
+  };
+}
+
+export function useForm2(fetcher: any, Schema: any) {
+  // type FilterStringKeys<T> = {
+  //   [K in keyof T]: K extends string ? K : never;
+  // }[keyof T];
+  // type SchemaKeys = FilterStringKeys<z.infer<typeof Schema>>;
+
+  // const getNameProp = useCallback((name: SchemaKeys) => {
+  //   return { name };
+  // }, []);
+
+  return {
+    getNameProp: 'z',
     isProcessing: fetcher?.state !== 'idle',
   };
 }

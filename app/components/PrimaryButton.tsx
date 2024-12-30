@@ -1,45 +1,57 @@
-import { Link } from '@remix-run/react';
 import type { RemixLinkProps } from '@remix-run/react/dist/components';
 import type { ComponentProps } from 'react';
+
+import { Link } from '@remix-run/react';
 import { twMerge } from 'tailwind-merge';
 
 interface GetClassNameProps {
   className: string | undefined;
   disabled: boolean | undefined;
+  darkMode?: boolean;
 }
 function getClassName(props: GetClassNameProps) {
-  const { disabled, className: inputClassName } = props;
+  const { disabled, darkMode, className: inputClassName } = props;
 
   const className = twMerge(
     'rounded-lg transition-all duration-150 text-center text-white p-3 py-2 font-normal',
-    'bg-black hover:scale-[101%] border border-black rounded-full px-6',
+    'bg-purple-600 rounded-full px-6',
+    darkMode && 'bg-white border border-white text-black',
     disabled && 'bg-black/50 cursor-not-allowed hover:bg-black/50',
+    darkMode && disabled && 'bg-white/50 hover:bg-white/50',
     inputClassName,
   );
   return className;
 }
 
-type Props = ComponentProps<'button'>;
+type Props = ComponentProps<'button'> & { darkMode?: boolean };
 export function PrimaryButton(props: Props) {
-  const { type = 'button', disabled, className, ...restOfProps } = props;
+  const {
+    type = 'button',
+    disabled,
+    darkMode,
+    className,
+    ...restOfProps
+  } = props;
 
   return (
     <button
       type={type}
-      className={getClassName({ className, disabled })}
+      className={getClassName({ className, disabled, darkMode })}
       disabled={disabled}
       {...restOfProps}
     />
   );
 }
 
-interface ButtonLinkProps extends ComponentProps<typeof Link>, RemixLinkProps {}
+interface ButtonLinkProps extends ComponentProps<typeof Link>, RemixLinkProps {
+  darkMode?: boolean;
+}
 export function PrimaryButtonLink(props: ButtonLinkProps) {
-  const { className, children, ...restOfProps } = props;
+  const { className, darkMode, children, ...restOfProps } = props;
 
   return (
     <Link
-      className={getClassName({ className, disabled: false })}
+      className={getClassName({ className, darkMode, disabled: false })}
       {...restOfProps}
     >
       {children}
@@ -47,13 +59,13 @@ export function PrimaryButtonLink(props: ButtonLinkProps) {
   );
 }
 
-type ExternalLinkProps = ComponentProps<'a'>;
+type ExternalLinkProps = ComponentProps<'a'> & { darkMode?: boolean };
 export function PrimaryButtonExternalLink(props: ExternalLinkProps) {
-  const { className, children, ...restOfProps } = props;
+  const { className, children, darkMode, ...restOfProps } = props;
 
   return (
     <a
-      className={getClassName({ className, disabled: false })}
+      className={getClassName({ className, darkMode, disabled: false })}
       {...restOfProps}
     >
       {children}

@@ -2,17 +2,18 @@ import type { ComponentProps } from 'react';
 
 import { twMerge } from 'tailwind-merge';
 
-export function SocMediaBadge(props: ComponentProps<'div'>) {
+interface Props extends ComponentProps<'span'> {}
+export function Desc(props: Props) {
   const { className, children, ...rest } = props;
   return (
-    <div
+    <span
       className={twMerge(
-        'flex bg-white shadow-normal flex-col justify-center items-center rounded-full p-2 md:p-4 border border-stone-400',
+        'text-xs text-inherit opacity-40 font-normal',
         className,
       )}
       {...rest}
     >
       {children}
-    </div>
+    </span>
   );
 }
