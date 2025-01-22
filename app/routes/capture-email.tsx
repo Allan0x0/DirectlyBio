@@ -3,9 +3,9 @@ import type { ActionFunctionArgs } from '@remix-run/node';
 import { z } from 'zod';
 
 import { prisma } from '~/db.server';
-import { badRequest, processBadRequest } from '~/models/core.validations';
 import { getErrorMessage } from '~/models/errors';
 import { getRawFormFields } from '~/models/forms';
+import { badRequest, processBadRequest } from '~/models/forms.server';
 
 export const CaptureEmailSchema = z.object({
   email: z.string().email().min(5),

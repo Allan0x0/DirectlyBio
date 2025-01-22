@@ -39,10 +39,10 @@ import { PrimaryButtonLink } from '~/components/PrimaryButton';
 import { SocialMediaTiles } from '~/components/SocialMediaTiles';
 import { Toolbar } from '~/components/Toolbar';
 import { prisma } from '~/db.server';
-import { badRequest, processBadRequest } from '~/models/core.validations';
 import { Env } from '~/models/environment.server';
 import { getErrorMessage } from '~/models/errors';
 import { getRawFormFields, hasFormError } from '~/models/forms';
+import { badRequest, processBadRequest } from '~/models/forms.server';
 import { AppLinks } from '~/models/links';
 import { useOptionalUser } from '~/utils';
 
