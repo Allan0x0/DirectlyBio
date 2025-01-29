@@ -39,7 +39,6 @@ import { PrimaryButtonLink } from '~/components/PrimaryButton';
 import { SocialMediaTiles } from '~/components/SocialMediaTiles';
 import { Toolbar } from '~/components/Toolbar';
 import { prisma } from '~/db.server';
-import { Env } from '~/models/environment.server';
 import { getErrorMessage } from '~/models/errors';
 import { getRawFormFields, hasFormError } from '~/models/forms';
 import { badRequest, processBadRequest } from '~/models/forms.server';
@@ -49,7 +48,8 @@ import { useOptionalUser } from '~/utils';
 // import { NoCodingRequired } from '~/components/NoCodingRequired';
 
 export async function loader() {
-  return json({ url: Env.SERVER_URL });
+  return json({ url: 'direcly.bio' });
+  // return json({ url: Env.SERVER_URL });
 }
 
 const Schema = z.object({
